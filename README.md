@@ -3,7 +3,7 @@
 </h1>
 
 <p>
-  The purpose of this project is to show the user what album and artist(s) were at the top of the Billboard 200 chart on the day they were born and for how long.
+  The purpose of this project is to show the user what album and artist(s) were at the top of the Billboard 200 chart on the day they were born and for how long. You must have Maven and Jsoup installed in order for the program to compile and run. 
 </p>
 
 <h2>
@@ -166,7 +166,19 @@ The reasoning behind using both week and weekTemp variables was in order to be a
             }
 ```
 
-   After all the information was stored, it was simply a matter of putting it all together in a println and sending it back to the user. I didn't show all my implementation on this page as it would be too much, but all of my code is present in the repository in which this README.file resides. 
+   After all the information was stored, it was simply a matter of putting it all together in a println and sending it back to the user. I didn't show all my implementation on this page as it would be too much, but all of my code is present in the repository in which this README.file resides. Here's an example of how the program should run using my birthday:
+
+```
+Enter your birthday to see what album was #1 on the Billboard 200!
+What is your birth year? (YYYY)
+2003
+What is your birth month? (MM)
+08
+What is your birth day? (DD)
+07
+The #1 album on the Billboard 200 chart for your birthday (2003/08/07) was "Bad Boys II" by Soundtrack
+It was on its *2nd* week at #1.
+```
 </p>
 
 
