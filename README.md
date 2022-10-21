@@ -130,7 +130,7 @@ Once the tags were found, it was a matter of locating at which index they reside
 The reasoning behind using both week and weekTemp variables was in order to be able to pass week, aka the number of weeks charted at #1, as an integer later in my code and tempWeek as the String value. This was needed as I wanted to implement a "st" vs "nd" vs "rd" vs "th" system in my output, something that could not be done solely using a String value that was given. I generated a switch case that iterates through and looks for specific cases or otherwise prints out "th" as a default. Here's the code: 
    
 ```java
-   switch(Integer.parseInt(week))
+            switch(Integer.parseInt(week))
             {
                 case 1:
                 case 21:
