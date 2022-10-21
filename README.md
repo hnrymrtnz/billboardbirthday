@@ -25,9 +25,80 @@
 
   At the start of the program, the user is asked to input a year, a month, and a day, each needing their own exception handling (No digits larger than 9999 or smaller than 1000 for the year for example). With these inputs, I was able to generate the link to a specific day on the Billboard 200 chart simply by creating a string with the initial link and inputs combined. 
 
-  Once the connection to the website was made using Jsoup, I was able to look for specific HTML elements that corresponded to the album name, artist(s), and number of weeks they had been charting at #1. This was done by opening up inspect element and finding which HTML element tags were present for each of the 3 bits of information I was trying to find. Below are the specific tags I used for each variable:
+  Once the connection to the website was made using Jsoup, I was able to look for specific HTML elements that corresponded to the album name, artist(s), and number of weeks they had been charting at #1. This was done by opening up inspect element and finding which HTML element tags were present for each of the 3 bits of information I was trying to find. Below are the specific tags I utilized to find each variable:
+   
+```java
+        Document doc = Jsoup.parse(chartData("https://www.billboard.com/charts/billboard-200/"+year+"-"+month+"-"+day));
+        Elements h3 = doc.select("h3");
+        Elements p = doc.select("p");
+        Elements span = doc.select("span");
+```
 
+Once the tags were found, it was a matter of locating at which index they resided in. To be frank, it took quite a bit of trial and error in order to find all of them, however, I was able to come up with a neat solution to finding the index of the weeks charted at #1 which I'm proud of. Because of how span works in HTML, there was no possible way I could have found it using trial and error so I had to find something that made it unique. Luckily, I was able to use the class attribute for the element and locate it much faster. Here's what I did for each variable:
+   
+```java
+            albumName = h3.first().text();
+            artistName = p.get(1).text();
+            for(Element e : span)
+            {
+                if(e.hasClass("c-label"))
+                {
+                    if(count == 1)
+                    {
+                        if(e.text().equals("New this week!"))
+                        {
+                            week = "+1";
+                        }
+                        else
+                        {
+                            week = "+" + e.text();
+                            weekTemp = e.text();
+                        }
+                    }
 
+                    count++;
+                }
+            }
+```
+
+The reasoning behind using both week and weekTemp variables was in order to be able to pass week, aka the number of weeks charted at #1, as an integer later in my code and tempWeek as the String value. This was needed as I wanted to implement a "st" vs "nd" vs "rd" vs "th" system in my output, something that could not be done solely using a String value that was given. I generated a switch case that iterates through and looks for specific cases or otherwise prints out "th" as a default. Here's the code: 
+   
+```java
+   switch(Integer.parseInt(week))
+            {
+                case 1:
+                case 21:
+                case 31:
+                case 41:
+                case 51:
+                case 61:
+                    week = weekTemp;
+                    iden = "st";
+                    break;
+                case 2:
+                case 22:
+                case 32:
+                case 42:
+                case 52:
+                case 62:
+                    week = weekTemp;
+                    iden = "nd";
+                    break;
+                case 3:
+                case 23:
+                case 33:
+                case 43:
+                case 53:
+                case 63:
+                    week = weekTemp;
+                    iden = "rd";
+                    break;
+                default:
+                    week = weekTemp;
+                    iden = "th";
+                    break;
+            }
+```
 </p>
 
 
