@@ -11,9 +11,9 @@
 </h2>
 
 <p>
-  At the beginning of this project, I actually had no idea how to access data from websites and implement it into a Java program. But the further I looked into the topic, the easier it became to grasp the fundamentals of basic web scraping. I learned how to use Java libraries and packages, something that had puzzled me before, and switched to using Visual Studio Code.
+  At the beginning of this project, I actually had no idea how to access data from websites and implement it into a Java program. But the further I looked into the topic, the easier it became to grasp the fundamentals of basic web scraping. I learned how to use Java libraries and packages, something that had puzzled me before, and switched to using Visual Studio Code (still testing how I like it).
 
-  On top of this, I also learned a bit of HTML that cemented what I already knew, and helped create this readme file! 
+  On top of this, I also learned a bit of HTML that cemented what I already knew, and helped create this README file! 
 </p>
 
 <h2>
@@ -25,6 +25,72 @@
 
   At the start of the program, the user is asked to input a year, a month, and a day, each needing their own exception handling (No digits larger than 9999 or smaller than 1000 for the year for example). With these inputs, I was able to generate the link to a specific day on the Billboard 200 chart simply by creating a string with the initial link and inputs combined. 
 
+```java
+        System.out.println("What is your birth year? (YYYY)");
+        temp = in.next();
+        if(temp.length() != 4)
+        {
+            throw new FileNotFoundException("Unable to find year. Please try again using the 'YYYY' format. Exiting program.");
+        }
+        else
+        {
+            year = temp;
+        }
+
+        System.out.println("What is your birth month? (MM)");
+        temp = in.next();
+        if(temp.length() != 2)
+        {
+            throw new FileNotFoundException("Unable to find month. Please try again using the 'MM' format. Exiting program.");
+        }
+        else
+        {
+            month = temp;
+        }
+
+        System.out.println("What is your birth day? (DD)");
+        temp = in.next();
+        if(temp.length() != 2)
+        {
+            throw new FileNotFoundException("Unable to find day. Please try again using the 'DD' format. Exiting program.");
+        }
+        else
+        {
+            day = temp;
+        }
+```
+
+   In order to obtain the information I was looking for, I needed to create a method that would go onto the website, make a connection, and allow me to get any HTML that I needed. The process of doing this was a bit challenging as I had no clue where to begin using classes like URLConnection or BufferedReader, but I was ultimately able to get it to work. Here is the method I used:
+
+```java
+   public static String chartData(String link)
+   {
+      StringBuilder data = new StringBuilder();
+      
+      try
+      {
+         URL url = new URL(link);
+         URLConnection urlConnection = url.openConnection();
+         
+         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); 
+         String line;
+         
+         while((line = bufferedReader.readLine()) != null)
+         {
+            data.append(line + "\n");
+         }
+         bufferedReader.close();
+      }
+      
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+      
+      return data.toString();
+   }
+```
+   
   Once the connection to the website was made using Jsoup, I was able to look for specific HTML elements that corresponded to the album name, artist(s), and number of weeks they had been charting at #1. This was done by opening up inspect element and finding which HTML element tags were present for each of the 3 bits of information I was trying to find. Below are the specific tags I utilized to find each variable:
    
 ```java
@@ -99,6 +165,8 @@ The reasoning behind using both week and weekTemp variables was in order to be a
                     break;
             }
 ```
+
+   After all the information was stored, it was simply a matter of putting it all together in a println and sending it back to the user. I didn't show all my implementation on this page as it would be too much, but all of my code is present in the repository in which this README.file resides. 
 </p>
 
 
@@ -107,5 +175,5 @@ The reasoning behind using both week and weekTemp variables was in order to be a
 </h2>
 
 <p>
-  I would love to make a website that showcases this project, hopefully implementing a GUI so that the user doesn't have to do much on their end. I also want to add album covers and more information on each album, even providing links on where you can listen to it. 
+  I had lots of fun working on this as it was my first solo project and I would most definitely want to do something similar again. I would love to make a website that showcases this or other similar future projects, hopefully implementing a GUI so that the user doesn't have to do much on their end. I also want to add album covers and more information on each album, even providing links on where you can listen to it, etc etc. 
 </p>
