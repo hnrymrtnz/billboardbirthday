@@ -3,7 +3,7 @@
 </h1>
 
 <p>
-  The purpose of this project is to show the user what album and artist(s) were at the top of the Billboard 200 chart on the day they were born and for how long. You must have Maven and Jsoup installed in order for the program to compile and run. 
+  The purpose of this project is to show the user what album and artist(s) were at the top of the Billboard 200 chart on the day they were born and for how long. You must have Apache Maven and Jsoup installed in order for the program to compile and run. 
 </p>
 
 <h2>
