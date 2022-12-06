@@ -1,5 +1,5 @@
 <h1>
-   Billboard Birthday Project 
+   Web-scraping using Java and Related Libraries
 </h1>
 
 <p>
@@ -11,9 +11,7 @@
 </h2>
 
 <p>
-  At the beginning of this project, I actually had no idea how to access data from websites and implement it into a Java program. But the further I looked into the topic, the easier it became to grasp the fundamentals of basic web scraping. I learned how to use Java libraries and packages, something that had puzzled me before, and switched to using Visual Studio Code (still testing how I like it).
-
-  On top of this, I also learned a bit of HTML that cemented what I already knew, and helped create this README file! 
+  At the beginning of this project, I actually had no idea how to access data from websites and implement it into a Java program. But the further I looked into the topic, the easier it became to grasp the fundamentals of basic web scraping. I learned how to use Java libraries and packages, something that had puzzled me before, and switched to using Visual Studio Code as my IDE.
 </p>
 
 <h2>
@@ -21,7 +19,7 @@
 </h2>
 
 <p>
-  Using a combination of Apache Maven and Jsoup, I was able to connect to the Billboard website and extract data from their HTML page. It took quite a bit of work and time finding where specific elements were, but once those were located, the rest was basic Java programming that I already knew from previous classes.
+  Using a combination of Apache Maven and Jsoup, I was able to connect to the Billboard website and extract data from their HTML page. It took quite a bit of work and time finding where specific elements were, but once those were located, the rest was basic Java programming that I already knew.
 
   At the start of the program, the user is asked to input a year, a month, and a day, each needing their own exception handling (No digits larger than 9999 or smaller than 1000 for the year for example). With these inputs, I was able to generate the link to a specific day on the Billboard 200 chart simply by creating a string with the initial link and inputs combined. 
 
@@ -60,7 +58,7 @@
         }
 ```
 
-   In order to obtain the information I was looking for, I needed to create a method that would go onto the website, make a connection, and allow me to get any HTML that I needed. The process of doing this was a bit challenging as I had no clue where to begin using classes like URLConnection or BufferedReader, but I was ultimately able to get it to work. Here is the method I used:
+   In order to obtain the information I was looking for, I needed to create a method that would go onto the website, make a connection, and allow me to get any HTML that I needed. The process of doing this was a bit challenging using classes such as URLConnection and BufferedReader, but I was ultimately able to wrap my head around it. Here is the method I used:
 
 ```java
    public static String chartData(String link)
@@ -187,5 +185,5 @@ It was on its *2nd* week at #1.
 </h2>
 
 <p>
-  I had lots of fun working on this as it was my first solo project and I would most definitely want to do something similar again. I would love to make a website that showcases this or other similar future projects, hopefully implementing a GUI so that the user doesn't have to do much on their end. I also want to add album covers and more information on each album, even providing links on where you can listen to it, etc etc. 
+  I had lots of fun working on this and sparked my interest in data science and web-scraping. I would love to make a website that showcases this or other similar future projects, hopefully implementing a GUI so that the user doesn't have to do much on their end. I also want to add album covers and more information on each album, even providing links on where you can listen to it, etc etc. 
 </p>
